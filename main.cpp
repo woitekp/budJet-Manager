@@ -1,9 +1,7 @@
-#include <iostream>
-
-using namespace std;
+#include "budgetManager.h"
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    BudgetManager BudgetManager("users.xml", "incomes.xml", "expenses.xml");
     return 0;
 }
