@@ -10,10 +10,10 @@ class XMLFile {
 protected:
     const std::string FILE_NAME;
     const std::string MAIN_TAG;
+    CMarkup xml;
 
 public:
     XMLFile(std::string fileName) : FILE_NAME(fileName), MAIN_TAG(FILE_NAME.substr(0, FILE_NAME.length()-4)) {
-        CMarkup xml;
 
         bool fileExists = xml.Load( FILE_NAME );
         if ( !fileExists )

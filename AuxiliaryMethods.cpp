@@ -2,7 +2,6 @@
 
 int AuxiliaryMethods::countPunctuationMarks(std::string str)
 {
-    int n = sizeof(str) / sizeof(str[0]);
     std::string::iterator strBegin= str.begin();
     std::string::iterator strEnd = str.end();
     return std::count(strBegin, strEnd, ',') + std::count(strBegin, strEnd, '.');
@@ -55,9 +54,11 @@ std::string AuxiliaryMethods::getFloatFromUser()
                 // set precision to hundreth - append zeros or trim
                 int precision = len - dotPosition;
                 for (int i=2; i >= precision; i--) {amount += "0";}
-                return amount.substr(0, dotPosition+3);
+                amount = amount.substr(0, dotPosition+3);
+
             }
         }
         if (!validFloat) {std::cout << "Invalid number. Try again:\n";}
     }
+    return amount;
 }

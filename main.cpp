@@ -2,6 +2,6 @@
 
 int main()
 {
-    BudgetManager BudgetManager("users.xml", "incomes.xml", "expenses.xml");
+    BudgetManager budgetManager("users.xml", "incomes.xml", "expenses.xml");
     return 0;
 }

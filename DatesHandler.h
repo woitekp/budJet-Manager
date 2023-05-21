@@ -14,6 +14,8 @@ class DatesHandler
     static void printDateFormatHint(std::string lowerLimitDate=LOWER_LIMIT_DATE);
     static bool validateDate(std::string date, std::string lowerLimitDate=LOWER_LIMIT_DATE);
     static bool validateDateFormat(std::string date);
+    static tm getLocalizedTime ();
+
 
 public:
     static std::string getCurrentDate();

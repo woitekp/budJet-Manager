@@ -29,6 +29,6 @@ public:
         };
 
     void addTransaction();
-    float getGivenPeriodTransactions(std::string startDate, std::string endDate);
+    double getGivenPeriodTransactions(std::string startDate, std::string endDate);
 };
 #endif

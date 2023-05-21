@@ -41,9 +41,9 @@ bool TransactionsManager::CompareTransactionsByDate (Transaction t1, Transaction
     return (t1.getDate()) < (t2.getDate());
 }
 
-float TransactionsManager::getGivenPeriodTransactions(std::string startDate, std::string endDate)
+double TransactionsManager::getGivenPeriodTransactions(std::string startDate, std::string endDate)
 {
-    float transactionsSum = 0;
+    double transactionsSum = 0;
     std::sort (transactions.begin(), transactions.end(), CompareTransactionsByDate);
 
     int n = 1;
@@ -52,8 +52,8 @@ float TransactionsManager::getGivenPeriodTransactions(std::string startDate, std
         std::string date = transactions[i].getDate();
         if ( (startDate <= date && date <= endDate) )
         {
-            std::cout << "------\n";
-            std::cout << "number: " << n++ << std::endl;
+            std::cout << "- " << n++ << " -" << std::endl;
+            //std::cout << "number: " << n++ << std::endl;
             std::cout << "date: " << transactions[i].getDate() << std::endl;
             std::cout << "category: " << transactions[i].getCategory() << std::endl;
             std::cout << "amount: " << transactions[i].getAmount() << std::endl;

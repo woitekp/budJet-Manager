@@ -13,11 +13,11 @@ void BalanceManager::addExpense()
 void BalanceManager::getGivenPeriodBalance(std::string startDate, std::string endDate)
 {
     std::cout << "\nIncomes:\n\n";
-    float incomesSum = incomesManager.getGivenPeriodTransactions(startDate, endDate);
+    double incomesSum = incomesManager.getGivenPeriodTransactions(startDate, endDate);
     system("pause");
 
     std::cout << "\n\nExpenses:\n\n";
-    float expensesSum = expensesManager.getGivenPeriodTransactions(startDate, endDate);
+    double expensesSum = expensesManager.getGivenPeriodTransactions(startDate, endDate);
     system("pause");
 
     std::cout << "\n\nSum of your incomes is: " << incomesSum << "\n";

@@ -1,42 +1,51 @@
 #include "DatesHandler.h"
 
-std::string DatesHandler::getCurrentDate()
+tm DatesHandler::getLocalizedTime()
 {
     std::time_t currentTime = std::time(nullptr);
     struct tm localizedTime = *std::localtime(&currentTime);
+    return localizedTime;
+}
+
+int DatesHandler::getMonthDaysCount(int year, int month) {
+    int monthDaysCount = 0;
+    switch (month)
+    {
+    case 1:
+    case 3:
+    case 5:
+    case 7:
+    case 8:
+    case 10:
+    case 12: monthDaysCount = 31; break;
+
+    case 4:
+    case 6:
+    case 9:
+    case 11: monthDaysCount = 30; break;
+
+    case 2:
+        if ( (year % 4 == 0) && (year % 100 != 0 ) || (year % 400 == 0) )
+        { monthDaysCount = 29; }
+        else { monthDaysCount = 28; }
+        break;
+    }
+
+    return monthDaysCount;
+}
+
+std::string DatesHandler::getCurrentDate()
+{
+    tm localizedTime = getLocalizedTime();
     char currentDate[11];
     strftime(currentDate, 11, "%Y-%m-%d", &localizedTime);
     return currentDate;
 }
 
-int DatesHandler::getMonthDaysCount(int year, int month) {
-    switch (month)
-    {
-    case 1: return 31;
-    case 2:
-        {
-            if ( (year % 4 == 0) && (year % 100 != 0 ) || (year % 400 == 0) )
-            { return 29; }
-            else { return 28; }
-
-        }
-    case 3: return 31;
-    case 4: return 30;
-    case 5: return 31;
-    case 6: return 30;
-    case 7: return 31;
-    case 8: return 31;
-    case 9: return 30;
-    case 10: return 31;
-    case 11: return 30;
-    case 12: return 31;
-    }
-}
 
 std::string DatesHandler::getCurrentMonthFirstDay()
 {
-    std::time_t currentTime = std::time(nullptr);
-    struct tm localizedTime = *std::localtime(&currentTime);
+    tm localizedTime = getLocalizedTime();
     localizedTime.tm_mday = 1;
     char monthFirstDay[11] = "";
     strftime(monthFirstDay, 11, "%Y-%m-%d", &localizedTime);
@@ -45,8 +54,7 @@ std::string DatesHandler::getCurrentMonthFirstDay()
 
 std::string DatesHandler::getCurrentMonthLastDay()
 {
-    std::time_t currentTime = std::time(nullptr);
-    struct tm localizedTime = *std::localtime(&currentTime);
+    tm localizedTime = getLocalizedTime();
     int year = localizedTime.tm_year + 1900; // tm_year = years since 1900
     int month = localizedTime.tm_mon+1; // indexed from zero
     localizedTime.tm_mday = getMonthDaysCount(year, month);
@@ -57,8 +65,7 @@ std::string DatesHandler::getCurrentMonthLastDay()
 
 std::string DatesHandler::getLastMonthFirstDay()
 {
-    std::time_t currentTime = std::time(nullptr);
-    struct tm localizedTime = *std::localtime(&currentTime);
+    tm localizedTime = getLocalizedTime();
     localizedTime.tm_mon -= 1;
     localizedTime.tm_mday = 1;
     char monthFirstDay[11] = "";
@@ -68,8 +75,7 @@ std::string DatesHandler::getLastMonthFirstDay()
 
 std::string DatesHandler::getLastMonthLastDay()
 {
-    std::time_t currentTime = std::time(nullptr);
-    struct tm localizedTime = *std::localtime(&currentTime);
+    tm localizedTime = getLocalizedTime();
     int year = localizedTime.tm_year + 1900;
     int month = localizedTime.tm_mon;
     localizedTime.tm_mon -= 1;

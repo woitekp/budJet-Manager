@@ -13,12 +13,10 @@ void BudgetManager::usersMenu()
         switch (userChoice)
         {
             case '1':
-                {
-                    userLogin();
-                    if (userIsLogged())
-                        {budgetManagerMenu();}
-                    break;
-                }
+                userLogin();
+                if (userIsLogged())
+                    {budgetManagerMenu();}
+                break;
             case '2': userRegistration(); break;
             case '3': return;
         }
